@@ -1,4 +1,6 @@
-import Tkinter as tk
+#!/usr/bin/env python3
+
+import tkinter as tk
 import socket
 import threading
 
