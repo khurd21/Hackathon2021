@@ -3,6 +3,7 @@
 import tkinter as tk
 import csv
 import json
+import sys
 from profile import Friend 
 from profile import Profile
 from functools import partial
@@ -37,32 +38,19 @@ def readcsv():
             if row[4] == "None":
                 js = None
             else: 
-                js = json.loads(row[4])
-            print(js)
+                #js = json.loads(row[4])
+                js = eval(row[4])
+                for j in js:
+                    print(j)
+                    fr.root = row[0]
+                    fr.friend = j['Name']
+                    fr.dateToContact = j['dateToContact']
+                    fr.wellnessCheckFrequency = j['Name']
             p.id = row[5]
             p.password = row[6]
-
-        
-        
-        
-        
-        
-        #for row in reader:
-            #FriendsLisst = []
-            #f = F
-            #friends = row[4].split('|')
-            #i = 0;
-            #if (friends != None):
-                #for f in friends:
-                    #qualites = f.split(':') 
-                    #f = Friend(row[0], qualities[0], )
-                    #Friends[i].this = row[0]
-                    #Friends[i].friend = qualites[0]
-                    #Friends[i].contactTime = qualites[1]
-                    #i = i + 1
-            #p = ProVfile(row[0],row[1],row[2],Friends,row[4],row[5],row[6])
-            #profileList.append(p)
-
+            profileList.append(p)
+            #json.dump(p,sys.stdout)
+    print("printing profile List")
     return
 
 class LoginScreen:
@@ -91,9 +79,23 @@ class LoginScreen:
         validatelogin = partial(self.validateLogin, username, password)
         loginButton = tk.Button(self.window, text="Login", command=validatelogin).grid(row=4, column=0)  
 
+def save_users():
+    global profileList
+    with open('data/users_test.csv', 'w') as f:
+        #print("truncating")
+        #f.truncate()
+        for i in profileList:
+            print("printing to outfile")
+            i.save_user_data(f)
+            #f.write("test")
+    f.close()
+
 profileList=[]
 readcsv()
 printProfiles()
+save_users()
+#print(profileList)
+#profileList[0].save_user_data
 #row_count = sum(1 for row in fileObject)
 gui = LoginScreen()
 gui.loginScreen()
