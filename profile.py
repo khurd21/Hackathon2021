@@ -1,17 +1,15 @@
+# profile.py
 
 #NOTES:
 ## for image stuff for Avatar: https://www.geeksforgeeks.org/working-images-python/
 
 
-#   Need: Name, avatar, age  etc...
-#
-#
-#
-## IMPORTS:
-#import emoji
-#implement emoji using key value pair, valid emotions: happy, sad, exhausted, need help....
-#emoji = {'happy':'U0001F603', 'sad:'U0001F603'} 
+# Imports
+##########################
 import sys
+
+# Class Friend
+##########################
 class Friend:
     def __init__ (self, root = "", dateToContact = "", friend = "",  wellnessCheckFrequency = 0):
         self.me = root
@@ -19,6 +17,9 @@ class Friend:
         self.friend = friend
         self.wellnessCheckFrequency = wellnessCheckFrequency 
 
+        
+# Class Profile
+##########################
 class Profile:
     def __init__(self, name = "", mood = "", avatar = "", contact = "1", friendsList = "", id = 0, password = ""):
         self.name = name
@@ -28,7 +29,8 @@ class Profile:
         self.id = id;
         self.password = password
         self.friendsList = friendsList
-
+        return
+    
     def save_user_data(self, f):
         f.write(f"{self.name}|{self.mood}|{self.avatar}|{self.contact}|[")
         jason = ""
@@ -47,4 +49,4 @@ class Profile:
             jason += "None"
         f.write(jason)
         f.write(f"]|{self.id}|{self.password}|\n")
-
+        return
