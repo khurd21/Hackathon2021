@@ -85,7 +85,6 @@ class Server():
 
         self.update_client_names_display()
 
-
         while True:
             data = client_connection.recv(4096)
             if not data: break
