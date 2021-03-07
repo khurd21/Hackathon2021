@@ -72,9 +72,9 @@ class Server():
 
         # send welcome message
         self.client_name  = client_connection.recv(4096)
-        welcome_str1 = "Welcome! "
+        welcome_str1 = "Welcome:"
         welcome_str1 = str.encode(welcome_str1)
-        welcome_str2 = " use 'exit' to quit."
+        welcome_str2 = " use the X in the right corner to quit."
         welcome_str2 = str.encode(welcome_str2)
 
         client_connection.send(welcome_str1)
