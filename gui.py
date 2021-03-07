@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import tkinter as tk
+from custom_client import Client
 from profile import Profile
 import glob
 
@@ -30,8 +31,49 @@ class GUI:
         self.user_title.place(relx=0.5, rely=0.1, anchor=tk.CENTER)
         self.user_label.place(relx=0.5, rely=0.3, anchor=tk.CENTER)
         self.label.place(relx=0.5,rely=0.5,anchor=tk.CENTER)
+
+        # settings
+        self.popupLabel = tk.Label(self.master, text="Color Settings")
+        self.popupLabel.pack(side=tk.BOTTOM)
+
+        self.popupMenu = tk.Menu(self.master, tearoff=0)
+
+        self.popupMenu.add_command(label = "Red", command = lambda : self.settings("Red"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Green", command = lambda : self.settings("Green"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Pink", command = lambda : self.settings("Pink"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Gray", command = lambda : self.settings("Gray"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Purple", command = lambda : self.settings("Purple"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Blue", command = lambda : self.settings("Blue"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Yellow", command = lambda : self.settings("Yellow"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Light Mode", command = lambda : self.settings("White"))
+        self.master.bind("<Button-3>", self.popup)
+
+        self.popupMenu.add_command(label = "Dark Mode", command = lambda : self.settings("#19201B"))
+        self.master.bind("<Button-3>", self.popup)
         return
 
+    def popup(self, event):
+        try:
+            self.popupMenu.tk_popup(event.x_root, event.y_root, 0)
+        finally:
+            self.popupMenu.grab_release()
+
+    def settings(self, message):
+        self.master.configure(background=message)
 
     def button_refresh_clicked(self):
         print('Refresh Button Clicked')
@@ -62,5 +104,5 @@ class GUI:
 
     def button_start_chat_clicked(self):
         print('Start Chat Button Clicked')
-        self.label.config(text=f'This would be the chat window.')
+        self.client = Client("rgusa")
         return
