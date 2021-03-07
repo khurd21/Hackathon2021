@@ -9,7 +9,7 @@ import pygame
 
 class Client:
     client = None
-    HOST_ADDR = "10.0.0.44"
+    HOST_ADDR = "10.0.0.246"
     #HOST_ADDR = "71.231.103.175"
     #HOST_ADDR = socket.gethostname()
     #HOST_ADDR = "0.0.0.0"
@@ -50,7 +50,7 @@ class Client:
         self.popupMenu.add_command(label = "WilHelm Scream", command = lambda : self.playSounds("WilHelm Scream"))
         self.bottomFrame.bind("<Button-3>", self.popup)
         
-        self.tkMessage = tk.Text(self.bottomFrame, height=2, width=55)
+        self.tkMessage = tk.Text(self.bottomFrame, height=1, width=55)
         self.tkMessage.pack(side=tk.LEFT, padx=(5, 13), pady=(5, 10))
         self.tkMessage.config(highlightbackground="grey", state="disabled")
         self.tkMessage.bind("<Return>", (lambda event: self.receive_message_from_chat(self.tkMessage.get("1.0", tk.END))))
@@ -61,7 +61,7 @@ class Client:
         self.scrollBar.pack(side=tk.RIGHT, fill=tk.Y)
         self.tkDisplay = tk.Text(self.displayFrame, height=20, width=55)
         self.tkDisplay.pack(side=tk.LEFT, fill=tk.Y, padx=(5, 0))
-        self.tkDisplay.tag_config("tag_your_message", foreground="blue")
+        self.tkDisplay.tag_config("tag_your_message", foreground="purple")
         self.scrollBar.config(command=self.tkDisplay.yview)
         self.tkDisplay.config(yscrollcommand=self.scrollBar.set, background="#F4F6F7", highlightbackground="grey", state="disabled")
         self.displayFrame.pack(side=tk.TOP)
@@ -96,7 +96,7 @@ class Client:
             if len(texts) < 1:
                 self.tkDisplay.insert(tk.END, from_server)
             else:
-                self.tkDisplay.insert(tk.END, from_server + '\n')
+                self.tkDisplay.insert(tk.END, "\n"+ from_server)
 
             self.tkDisplay.config(state=tk.DISABLED)
             self.tkDisplay.see(tk.END)
@@ -105,6 +105,7 @@ class Client:
         self.window.destroy()
 
     def receive_message_from_chat(self, message):
+        print("type: ", type(message))
         message = message.replace('\n', '')
         texts = self.tkDisplay.get("1.0", tk.END).strip()
 
@@ -176,4 +177,4 @@ class Client:
     def playSounds(self, message):
         self.receive_message_from_chat(message)
 
-#client = Client("Kyle Hurd")
+#client = Client("rgusa")
