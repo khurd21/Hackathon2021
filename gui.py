@@ -104,5 +104,5 @@ class GUI:
 
     def button_start_chat_clicked(self):
         print('Start Chat Button Clicked')
-        self.client = Client("rgusa")
+        self.client = Client(glob.user_profile.name)
         return

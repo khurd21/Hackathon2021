@@ -10,7 +10,7 @@ import pygame
 
 class Client:
     client = None
-    HOST_ADDR = "10.0.0.246"
+    HOST_ADDR = "10.0.0.44"
     #HOST_ADDR = "71.231.103.175"
     #HOST_ADDR = socket.gethostname()
     #HOST_ADDR = "0.0.0.0"
@@ -102,7 +102,7 @@ class Client:
             if len(texts) < 1:
                 self.tkDisplay.insert(tk.END, from_server)
             else:
-                self.tkDisplay.insert(tk.END, "\n\n"+ from_server)
+                self.tkDisplay.insert(tk.END, from_server + '\n')
 
             self.tkDisplay.config(state=tk.DISABLED)
             self.tkDisplay.see(tk.END)
@@ -179,4 +179,4 @@ class Client:
     def playSounds(self, message):
         self.receive_message_from_chat(message)
 
-#client = Client("rgusa")
+#client = Client("Kyle Hurd")
