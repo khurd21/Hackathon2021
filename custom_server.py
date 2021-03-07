@@ -9,7 +9,7 @@ class Server():
     #HOST_ADDRESS = "71.231.103.175"
     #HOST_ADDRESS = "0.0.0.0"
     #HOST_ADDRESS = socket.gethostname()
-    HOST_ADDRESS = "10.0.0.44"
+    HOST_ADDRESS = "10.0.0.246"
     HOST_PORT = 8080
     client_name = " "
     client_arr = []
@@ -72,14 +72,11 @@ class Server():
 
         # send welcome message
         self.client_name  = client_connection.recv(4096)
-        welcome_str1 = "Welcome:"
-        welcome_str1 = str.encode(welcome_str1)
-        welcome_str2 = " use the X in the right corner to quit."
-        welcome_str2 = str.encode(welcome_str2)
+        welcome_str = "Welcome: " + self.client_name.decode("utf-8") + " use the X in the right corner to quit."
+        welcome_str = welcome_str.replace('\n', '')
+        welcome_str = str.encode(welcome_str)
 
-        client_connection.send(welcome_str1)
-        client_connection.send(self.client_name)
-        client_connection.send(welcome_str2)
+        client_connection.send(welcome_str)
 
         self.client_name_arr.append(self.client_name)
 
@@ -94,15 +91,20 @@ class Server():
 
             client_index = self.get_client_index(client_connection)
             sending_client_name = self.client_name_arr[client_index]
-            
-            arrow = "->"
-            arrow = str.encode(arrow)
+            strange = sending_client_name.decode("utf-8") + "->" + client_message.decode("utf-8")
+            #client_message = client_message.replace("\n", "")
+            #arrow = "->"
+            #arrow = str.encode(arrow)
+            strange = strange.replace('\n', '')
+            print("strange: ", strange)
+            strange = str.encode(strange)
 
             for client in self.client_arr:
                 if client != client_connection:
-                    client.send(sending_client_name)
-                    client.send(arrow)
-                    client.send(client_message)
+                    client.send(strange)
+                    #client.send(sending_client_name)
+                    #client.send(arrow)
+                    #client.send(client_message)
 
         client_index = self.get_client_index(client_connection)
         del self.client_name_arr[client_index]
