@@ -14,21 +14,22 @@ class Client:
     #HOST_ADDR = "0.0.0.0"
     HOST_PORT = 8080
 
-    def __init__(self):
+    def __init__(self, name):
         self.window = tk.Tk()
         self.window.title("Wellness Client")
-        self.username = " "
+        self.username = name
 
         self.topFrame = tk.Frame(self.window)
-        self.labelEntry = tk.Label(self.topFrame, text = "Name:").pack(side=tk.LEFT)
-        self.entryName = tk.Entry(self.topFrame)
-        self.entryName.pack(side=tk.LEFT)
-        self.buttonConnect = tk.Button(self.topFrame, text="Connect", command=lambda : self.connection_wrapper())
-        self.buttonConnect.pack(side=tk.LEFT)
         self.topFrame.pack(side=tk.TOP)
 
+        self.bottomFrame = tk.Frame(self.window)
+        self.tkMessage = tk.Text(self.bottomFrame, height=2, width=55)
+        self.tkMessage.pack(side=tk.LEFT, padx=(5, 13), pady=(5, 10))
+        self.tkMessage.config(highlightbackground="grey", state="disabled")
+        self.tkMessage.bind("<Return>", (lambda event: self.receive_message_from_chat(self.tkMessage.get("1.0", tk.END))))
+        self.bottomFrame.pack(side=tk.BOTTOM)
+
         self.displayFrame = tk.Frame(self.window)
-        self.labelLine = tk.Label(self.displayFrame, text="*********************************************************************").pack()
         self.scrollBar = tk.Scrollbar(self.displayFrame)
         self.scrollBar.pack(side=tk.RIGHT, fill=tk.Y)
         self.tkDisplay = tk.Text(self.displayFrame, height=20, width=55)
@@ -38,21 +39,9 @@ class Client:
         self.tkDisplay.config(yscrollcommand=self.scrollBar.set, background="#F4F6F7", highlightbackground="grey", state="disabled")
         self.displayFrame.pack(side=tk.TOP)
 
-        self.bottomFrame = tk.Frame(self.window)
-        self.tkMessage = tk.Text(self.bottomFrame, height=2, width=55)
-        self.tkMessage.pack(side=tk.LEFT, padx=(5, 13), pady=(5, 10))
-        self.tkMessage.config(highlightbackground="grey", state="disabled")
-        self.tkMessage.bind("<Return>", (lambda event: self.receive_message_from_chat(self.tkMessage.get("1.0", tk.END))))
-        self.bottomFrame.pack(side=tk.BOTTOM)
+        self.connect_client2server()
 
         self.window.mainloop()
-
-    def connection_wrapper(self):
-        if len(self.entryName.get()) < 1:
-            print("Error")
-        else:
-            self.username = self.entryName.get()
-            self.connect_client2server()
 
     def connect_client2server(self):
         try:
@@ -61,16 +50,15 @@ class Client:
             self.client.connect((self.HOST_ADDR, self.HOST_PORT))
             self.client.send(str.encode(self.username))
 
-            self.entryName.config(state=tk.DISABLED)
-            self.buttonConnect.config(state=tk.DISABLED)
             self.tkMessage.config(state=tk.NORMAL)
 
+            print("here2")
             threading._start_new_thread(self.receive_message_from_server, (self.client, "m"))
         except Exception as e:
             print("here")
             print(e)
 
-    def receive_message_from_server(self, sck, m):
+    def receive_message_from_server(self, sck, arb):
         while True:
             from_server = sck.recv(4096)
             from_server = from_server.decode("utf-8")
@@ -113,4 +101,4 @@ class Client:
             self.window.destroy()
         print("Sending message")
 
-client = Client()
+client = Client("rgusa")
