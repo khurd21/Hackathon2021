@@ -9,7 +9,7 @@ from profile import Friend
 from profile import Profile
 from functools import partial
 from time import sleep
-
+from create_account import CreateAccount
 def save_users():
     with open('data/users_test.csv', 'w') as f:
         for i in glob.profileList:
@@ -92,6 +92,15 @@ class LoginScreen:
         self.is_correct_text.config(text='Incorrect!')
         return
 
+    def deiconify(self):
+        self.window.deiconify()
+
+    def createProfileWindow(self):
+        self.window.withdraw()
+        gui = CreateAccount(glob.profileList)
+        gui.displayScreen()
+        gui.window.mainloop()
+        gui.window.destroy()
 
     def loginScreen(self):
         print("login screen")
@@ -104,3 +113,5 @@ class LoginScreen:
         validatelogin = partial(self.validateLogin, username, password)
         loginButton = tk.Button(self.window, text="Login", command=validatelogin).grid(row=4, column=1)  
 
+        createProfileFunc = partial(self.createProfileWindow)
+        createAccountBtn = tk.Button(self.window, text = "Create Account", command=createProfileFunc).grid(row = 4, column = 0)

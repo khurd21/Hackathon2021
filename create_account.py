@@ -58,7 +58,3 @@ class CreateAccount:
         #printattr = partial(self.printAccount, username, password)
         #loginButton = tk.Button(self.window, text="print", command=printattr).grid(row=4, column=1)  
 
-        gui.window.mainloop()
-
-gui = CreateAccount()
-gui.displayScreen()
