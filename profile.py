@@ -15,7 +15,8 @@ class Friend:
         self.me = this
         self.friend = friend
         self.contactTime = contactTime
-
+#
+#name, mood, avatar, contact, friendsList, id,password,
 class Profile:
     def __init__(self, name = "", mood = "", avatar = "", contact = "1", friendsList = "", id = 0, password = ""):
         self.name = name
@@ -27,36 +28,37 @@ class Profile:
 
 
 ######## ID ################
-    @property
+    #@property
     def id(self):
         return self.id
 
-    @property.setter
-    def set_name(self, id):
+    #@property.setter
+    def set_id(self, id):
         self.id =id
 ######## MOOD ################
-    @property
+    #@property
     def mood(self):
         return self.mood
 
-    @property.setter
-    def set_name(self, mood):
+
+    #@property.setter
+    def set_mood(self, mood):
         self.mood =mood 
 ######## NAME ################
-    @property
+    #@property
     def name(self):
         return self.name
 
-    @property.setter
+    #@property.setter
     def set_name(self, name):
         self.name = name
 ######## AVATAR ######
-    @property
-    def getAvatar(self):
+    #@property
+    def get_avatar(self):
         return self.avatar
 
-    @property.setter
-    def setAvatar(self, avatar):
+    #@property.setter
+    def set_avatar(self, avatar):
         self.avatar = avatar
 
 
