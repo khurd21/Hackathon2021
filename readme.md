@@ -1,3 +1,4 @@
-HEALTH WEALTH AND STEALTH
+Wellness Checks:
+    A simple reminder to perform a civic duty - to check on your friends. 
 
-A simple interface to ensure you're being the best friend you can be. 
+Brought to you by Riley Gusa, Kyle Hurd and Silas Stokes. 
