@@ -30,24 +30,22 @@ class Profile:
         self.friendsList = friendsList
 
     def save_user_data(self, f):
-        #f.write("this is a new test")
         f.write(f"{self.name}|{self.mood}|{self.avatar}|{self.contact}|[")
-        jason = "" 
-        for fr in self.friendsList:
-            jason += "{\"Name\":"
-            jason += fr.friend
-            jason += ",\"wellnessCheckFrequency\":"
-            jason += fr.wellnessCheckFrequency
-            jason += ",\"dateToContact\":"
-            jason += fr.dateToContact
-            print(jason)
-            f.write("{\"Name\":")
-            f.write(fr.friend)
-            f.write(",\"wellnessCheckFrequency\":")
-            f.write(fr.wellnessCheckFrequency)
-            f.write(",\"dateToContact\":")
-            f.write(fr.dateToContact)
-            f.write("},")
+        jason = ""
+        if self.friendsList != None:
+            for fr in self.friendsList:
+                jason += "{\"Name\":\""
+                jason += fr.friend
+                jason += "\",\"wellnessCheckFrequency\":\""
+                jason += fr.wellnessCheckFrequency
+                jason += "\",\"dateToContact\":\""
+                jason += fr.dateToContact
+                jason += "\"},"
+                print(jason)
+            jason = jason[:-1]
+        else:
+            jason += "None"
+        f.write(jason)
         f.write(f"]|{self.id}|{self.password}|\n")
 #class Friend:
 #    def __init__ (self, this = "", friend = "", contactTime = ""):

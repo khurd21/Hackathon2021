@@ -1,3 +1,3 @@
-Silas|10|None|1|[{"Name": "Kyle","wellnessCheckFrequency":12,"dateToContact": "01/01/2021"},{"Name":"Riley", "wellnessCheckFrequency":15, "dateToContact": "12/01/21"}]|12345|hellamegaawesome|
-Kyle|3|None|0|None|1234|asdasdasdasd|
-Riley|10|None|0|None|123|pw|
+Silas|10|None|1|[{"Name": "Kyle","wellnessCheckFrequency":"12","dateToContact": "01/01/2021"},{"Name":"Riley", "wellnessCheckFrequency":"15", "dateToContact": "12/01/21"}]|12345|hellamegaawesome|
+Kyle|3|None|0|[None]|1234|asdasdasdasd|
+Riley|10|None|0|[None]|123|pw|

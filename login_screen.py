@@ -34,8 +34,9 @@ def readcsv():
             p.avatar = row[2]
             p.contact = int(row[3])
             #FRIENDS
-            if row[4] == "None":
+            if row[4] == "[None]":
                 js = None
+                friend_list = None
             else: 
                 #js = json.loads(row[4])
                 js = eval(row[4])
