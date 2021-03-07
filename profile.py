@@ -7,7 +7,7 @@
 #
 #
 ## IMPORTS:
-import emoji
+#import emoji
 #implement emoji using key value pair, valid emotions: happy, sad, exhausted, need help....
 #emoji = {'happy':'U0001F603', 'sad:'U0001F603'} 
 class Friend:
@@ -23,39 +23,5 @@ class Profile:
         self.avatar = avatar
         self.contact = contact
         self.id = id;
-
-
-######## ID ################
-    @property
-    def id(self):
-        return self.id
-
-    @property.setter
-    def set_name(self, id):
-        self.id =id
-######## MOOD ################
-    @property
-    def mood(self):
-        return self.mood
-
-    @property.setter
-    def set_name(self, mood):
-        self.mood =mood 
-######## NAME ################
-    @property
-    def name(self):
-        return self.name
-
-    @property.setter
-    def set_name(self, name):
-        self.name = name
-######## AVATAR ######
-    @property
-    def getAvatar(self):
-        return self.avatar
-
-    @property.setter
-    def setAvatar(self, avatar):
-        self.avatar = avatar
 
 

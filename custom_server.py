@@ -4,7 +4,6 @@ import tkinter as tk
 import socket
 import threading
 
-
 class Server():
     server = None
     HOST_ADDR = "0.0.0.0"
@@ -89,7 +88,12 @@ class Server():
 
         # send welcome message to client
         self.client_name  = client_connection.recv(4096)
-        client_connection.send("Welcome " + self.client_name + ". Use 'exit' to quit")
+        byt = "Welcome " + str(self.client_name) + ". Use 'exit' to quit"
+        print(byt)
+        byt = byt.encode()
+        print(byt)
+        client_connection.send(byt)
+        del byt
 
         self.clients_names.append(self.client_name)
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import tkinter as tk
+import tkinter.messagebox
 import socket
 import threading
 
@@ -76,6 +77,7 @@ class Client:
     def receive_message_from_server(self, sck, m):
         while True:
             from_server = sck.recv(4096)
+            from_server = from_server.decode()
 
             if not from_server: break
 
