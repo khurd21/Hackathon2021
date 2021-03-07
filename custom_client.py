@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import tkinter as tk
+from tkinter import messagebox
 import socket
 import threading
 import pygame
@@ -67,8 +68,13 @@ class Client:
         self.displayFrame.pack(side=tk.TOP)
 
         self.connect_client2server()
-
+        self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.window.mainloop()
+
+    def on_closing(self):
+        if messagebox.askokcancel("Quit", "Do you want to close the chatbox client?"):
+            self.client.close()
+            self.window.destroy()
 
     def connect_client2server(self):
         try:
@@ -81,7 +87,8 @@ class Client:
 
             threading._start_new_thread(self.receive_message_from_server, (self.client, "m"))
         except Exception as e:
-            print("Exception thrown (connect_client2server): " + e)
+            print("Exception thrown (connect_client2server): ")
+            print(e)
 
     def receive_message_from_server(self, sck, arb):
         while True:
@@ -158,9 +165,6 @@ class Client:
 
     def send_message_to_server(self, message):
         self.client.send(str.encode(message))
-        if message == "exit":
-            self.client.close()
-            self.window.destroy()
         print("Sending message")
     
     def bruh(self):
@@ -175,4 +179,4 @@ class Client:
     def playSounds(self, message):
         self.receive_message_from_chat(message)
 
-client = Client("rgusa")
+#client = Client("rgusa")
