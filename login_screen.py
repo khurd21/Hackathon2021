@@ -22,8 +22,10 @@ def readcsv():
     global profileList
     print("in read csv")
     with open('data/users.csv', newline='') as f:
-        reader = csv.reader(f)
+        reader = csv.reader(f, delimiter='|')
+
         for row in reader:
+            print(f"Name: {row[0]}")
             friend_list = []
             fr = Friend()
             p = Profile()
@@ -32,7 +34,10 @@ def readcsv():
             p.avatar = row[2]
             p.contact = int(row[3])
             #FRIENDS
-            js = json.loads(row[4])
+            if row[4] == "None":
+                js = None
+            else: 
+                js = json.loads(row[4])
             print(js)
             p.id = row[5]
             p.password = row[6]
