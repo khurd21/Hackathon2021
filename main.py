@@ -5,6 +5,7 @@ from profile import Profile
 from profile import Friend
 import tkinter as tk
 import login_screen
+import create_account 
 import gui
 
 
@@ -20,7 +21,6 @@ def display_menu():
 
 
 def main():
-
     login_screen.readcsv()
     login_screen.printProfiles()
     login_screen.save_users()

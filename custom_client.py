@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import tkinter as tk
-from tkinter import messagebox
 import socket
 import threading
 import pygame
@@ -52,7 +51,7 @@ class Client:
         self.bottomFrame.bind("<Button-3>", self.popup)
         
         self.tkMessage = tk.Text(self.bottomFrame, height=2, width=55)
-        self.tkMessage.pack(side=tk.LEFT, padx=(5, 13), pady=(11, 16))
+        self.tkMessage.pack(side=tk.LEFT, padx=(5, 13), pady=(5, 10))
         self.tkMessage.config(highlightbackground="grey", state="disabled")
         self.tkMessage.bind("<Return>", (lambda event: self.receive_message_from_chat(self.tkMessage.get("1.0", tk.END))))
         self.bottomFrame.pack(side=tk.BOTTOM)
@@ -68,13 +67,8 @@ class Client:
         self.displayFrame.pack(side=tk.TOP)
 
         self.connect_client2server()
-        self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
-        self.window.mainloop()
 
-    def on_closing(self):
-        if messagebox.askokcancel("Quit", "Do you want to close the chatbox client?"):
-            self.client.close()
-            self.window.destroy()
+        self.window.mainloop()
 
     def connect_client2server(self):
         try:
@@ -165,6 +159,9 @@ class Client:
 
     def send_message_to_server(self, message):
         self.client.send(str.encode(message))
+        if message == "exit":
+            self.client.close()
+            self.window.destroy()
         print("Sending message")
     
     def bruh(self):
