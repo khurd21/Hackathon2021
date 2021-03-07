@@ -124,39 +124,39 @@ class Client:
 
         print(message)
         if message == "Bruh!":
-            pygame.mixer.music.load("movie_1.ogg")
+            pygame.mixer.music.load("sounds/movie_1.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Nani!":
-            pygame.mixer.music.load("nani.ogg")
+            pygame.mixer.music.load("sounds/nani.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Yeah!":
-            pygame.mixer.music.load("yeah.ogg")
+            pygame.mixer.music.load("sounds/yeah.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Wow":
-            pygame.mixer.music.load("wow.ogg")
+            pygame.mixer.music.load("sounds/wow.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Do it!":
-            pygame.mixer.music.load("doit.ogg")
+            pygame.mixer.music.load("sounds/doit.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "I am groot.":
-            pygame.mixer.music.load("iamgroot.ogg")
+            pygame.mixer.music.load("isounds/amgroot.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Bazinga!":
-            pygame.mixer.music.load("bazinga.ogg")
+            pygame.mixer.music.load("sounds/bazinga.ogg")
             pygame.mixer.music.play(loops=0)
         
         elif message == "Windows OS":
-            pygame.mixer.music.load("nuclear-fart.ogg")
+            pygame.mixer.music.load("sounds/nuclear-fart.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "WilHelm Scream":
-            pygame.mixer.music.load("wilhelmscream.ogg")
+            pygame.mixer.music.load("sounds/wilhelmscream.ogg")
             pygame.mixer.music.play(loops=0)
 
         self.send_message_to_server(message)
