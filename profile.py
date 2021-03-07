@@ -18,46 +18,47 @@ class Friend:
 #
 #name, mood, avatar, contact, friendsList, id,password,
 class Profile:
-    def __init__(self, name = "", mood = "", avatar = "", contact = "1", friendsList = "", id = 0, password = ""):
+    def __init__(self, name = None, mood = None, avatar = None, contact = "1", friendsList = [], id = 0, password = ""):
         self.name = name
         self.mood = mood
         self.avatar = avatar
         self.contact = contact
         self.id = id
         self.password = password
+        self.friendsList = friendsList
 
-
+######### utitlity functions ################
+    def printFriends(self):
+        i = 0
+        for f in friendsList:
+            print(f'Friend Name: {f.friend}\t#{i}\tcontactTime: {f.contactTime}')
+            
 ######## ID ################
-    #@property
     def id(self):
         return self.id
 
     #@property.setter
     def set_id(self, id):
         self.id =id
+
 ######## MOOD ################
-    #@property
     def mood(self):
         return self.mood
 
-
-    #@property.setter
     def set_mood(self, mood):
         self.mood =mood 
+
 ######## NAME ################
-    #@property
     def name(self):
         return self.name
 
-    #@property.setter
     def set_name(self, name):
         self.name = name
+
 ######## AVATAR ######
-    #@property
     def get_avatar(self):
         return self.avatar
 
-    #@property.setter
     def set_avatar(self, avatar):
         self.avatar = avatar
 

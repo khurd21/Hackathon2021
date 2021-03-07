@@ -1,2 +1,3 @@
-Silas,10,None,1,None,12345,hellamegaawesome,
-Kyle,9,None,0,None,12345,asdasdasdasd,
+Silas|10|None|1|{'Kyle':12,'Riley':15}|12345|hellamegaawesome|
+Kyle|3|None|0|None|1234|asdasdasdasd|
+Riley|10|None|0|None|123|pw|
