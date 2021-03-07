@@ -2,18 +2,21 @@
 
 import tkinter as tk
 import csv
+import json
 from profile import Friend 
 from profile import Profile
 from functools import partial
 
 def getLength():
-    with open('data/users.csv', newline='') as f:
+    with open('data/users.csv','|', newline='') as f:
         return sum(1 for line in f)
 def printProfiles():
     global profileList
     for p in profileList:
         print(p.name)
-
+#Silas|10|None|1|{'Kyle':12,'Riley':15}|12345|hellamegaawesome|
+#Kyle|3|None|0|None|1234|asdasdasdasd|
+#Riley|10|None|0|None|123|pw|
 #name, mood, avatar, contact, friendsList, id,password,
 def readcsv():
     global profileList
@@ -29,6 +32,8 @@ def readcsv():
             p.avatar = row[2]
             p.contact = int(row[3])
             #FRIENDS
+            js = json.loads(row[4])
+            print(js)
             p.id = row[5]
             p.password = row[6]
 
@@ -37,21 +42,21 @@ def readcsv():
         
         
         
-        for row in reader:
-            FriendsLisst = []
-            f = F
-            friends = row[4].split('|')
-            i = 0;
-            if (friends != None):
-                for f in friends:
-                    qualites = f.split(':') 
-                    f = Friend(row[0], qualities[0], )
-                    Friends[i].this = row[0]
-                    Friends[i].friend = qualites[0]
-                    Friends[i].contactTime = qualites[1]
-                    i = i + 1
-            p = ProVfile(row[0],row[1],row[2],Friends,row[4],row[5],row[6])
-            profileList.append(p)
+        #for row in reader:
+            #FriendsLisst = []
+            #f = F
+            #friends = row[4].split('|')
+            #i = 0;
+            #if (friends != None):
+                #for f in friends:
+                    #qualites = f.split(':') 
+                    #f = Friend(row[0], qualities[0], )
+                    #Friends[i].this = row[0]
+                    #Friends[i].friend = qualites[0]
+                    #Friends[i].contactTime = qualites[1]
+                    #i = i + 1
+            #p = ProVfile(row[0],row[1],row[2],Friends,row[4],row[5],row[6])
+            #profileList.append(p)
 
     return
 

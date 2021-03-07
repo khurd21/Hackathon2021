@@ -1,3 +1,4 @@
+
 #NOTES:
 ## for image stuff for Avatar: https://www.geeksforgeeks.org/working-images-python/
 
@@ -15,51 +16,65 @@ class Friend:
         self.me = this
         self.friend = friend
         self.contactTime = contactTime
-#
-#name, mood, avatar, contact, friendsList, id,password,
+
 class Profile:
-    def __init__(self, name = None, mood = None, avatar = None, contact = "1", friendsList = [], id = 0, password = ""):
+    def __init__(self, name = "", mood = "", avatar = "", contact = "1", friendsList = "", id = 0):
         self.name = name
         self.mood = mood
         self.avatar = avatar
         self.contact = contact
-        self.id = id
-        self.password = password
-        self.friendsList = friendsList
+        self.id = id;
 
-######### utitlity functions ################
-    def printFriends(self):
-        i = 0
-        for f in friendsList:
-            print(f'Friend Name: {f.friend}\t#{i}\tcontactTime: {f.contactTime}')
+#class Friend:
+#    def __init__ (self, this = "", friend = "", contactTime = ""):
+#        self.me = this
+#        self.friend = friend
+#        self.contactTime = contactTime
+##
+##name, mood, avatar, contact, friendsList, id,password,
+#class Profile:
+#    def __init__(self, name = None, mood = None, avatar = None, contact = "1", friendsList = [], id = 0, password = ""):
+#        self.name = name
+#        self.mood = mood
+#        self.avatar = avatar
+#        self.contact = contact
+#        self.id = id
+#        self.password = password
+#        self.friendsList = friendsList
+
+########## utitlity functions ################
+#    def printFriends(self):
+#        i = 0
+#        for f in friendsList:
+#            print(f'Friend Name: {f.friend}\t#{i}\tcontactTime: {f.contactTime}')
             
-######## ID ################
-    def id(self):
-        return self.id
+######### ID ################
+#    def id(self):
+#        return self.id
 
-    #@property.setter
-    def set_id(self, id):
-        self.id =id
+#    #@property.setter
+#    def set_id(self, id):
+#        self.id =id
 
-######## MOOD ################
-    def mood(self):
-        return self.mood
+######### MOOD ################
+#    def mood(self):
+#        return self.mood
 
-    def set_mood(self, mood):
-        self.mood =mood 
+#    def set_mood(self, mood):
+#        self.mood =mood 
 
-######## NAME ################
-    def name(self):
-        return self.name
+######### NAME ################
+#    def name(self):
+#        return self.name
 
-    def set_name(self, name):
-        self.name = name
+#    def set_name(self, name):
+#        self.name = name
 
-######## AVATAR ######
-    def get_avatar(self):
-        return self.avatar
+######### AVATAR ######
+#    def get_avatar(self):
+#        return self.avatar
 
-    def set_avatar(self, avatar):
-        self.avatar = avatar
+#    def set_avatar(self, avatar):
+#        self.avatar = avatar
 
 
