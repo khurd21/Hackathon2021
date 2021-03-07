@@ -5,8 +5,9 @@ from functools import partial
 
 
 class CreateAccount:
-    def __init__(self, profileList=[]):
+    def __init__(self, profileList=[], profile = None):
         self.profileList = profileList
+        self.profile = profile
         self.window = tk.Tk()
         self.window.title("Wellness Check Account Creation")
         self.topFrame = tk.Frame(self.window)
@@ -14,18 +15,20 @@ class CreateAccount:
     def destroyWindow(self):
         self.window.destroy()
 
-########### createProfile() not working, usr and pw are passign as blank strings ####################33
     def createProfile(self, username, password, mood,contact):
         print(f"username: {username.get()} password: {password.get()} mood: {mood.get()} contact: {contact.get()}")
        # global profileList
         p = Profile()
         p.name = username.get()
         p.password = password.get()
-        p.mood = int(mood.get())
-        p.contact = int(contact.get())
+        p.mood = int(mood.get()) if int(mood.get()) > 10 or int(mood.get())<1 else 1
+        p.contact = 0 if contact.get() == 'N' else 1 #int(contact.get())
         p.avatar = None
         p.friendsList = None
+        self.profile = p
         self.profileList.append(p) 
+        print("account Created");
+        self.window.destroy()
         return 
 
     def printAccount(self, username, password):
@@ -45,7 +48,7 @@ class CreateAccount:
         passwordEntry = tk.Entry(self.window, textvariable=password, show='*').grid(row=1, column=1)  
 
         moodLabel = tk.Label(self.window,text="Mood (1-10)").grid(row=2, column=0)  
-        mood = tk.StringVar()
+        mood = tk.IntVar()
         moodEntry = tk.Entry(self.window, textvariable=mood).grid(row=2, column=1)  
         
         contactLabel = tk.Label(self.window,text="Do you want people to reach out? Y/N").grid(row=3, column=0)  
@@ -58,3 +61,7 @@ class CreateAccount:
         #printattr = partial(self.printAccount, username, password)
         #loginButton = tk.Button(self.window, text="print", command=printattr).grid(row=4, column=1)  
 
+#profileList = []
+#gui = CreateAccount(profileList)
+#gui.displayScreen()
+#gui.window.mainloop()

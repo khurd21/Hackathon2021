@@ -85,7 +85,7 @@ class LoginScreen:
                 glob.user_profile = p
                 self.is_correct_text.config(text=f'Correct! Welcome, {p.name}')
                 print("matched!")
-                sleep(5)
+                sleep(2)
                 self.window.destroy()
                 return True
         print("wrong username or password")
@@ -96,11 +96,12 @@ class LoginScreen:
         self.window.deiconify()
 
     def createProfileWindow(self):
-        self.window.withdraw()
-        gui = CreateAccount(glob.profileList)
+       # self.window.withdraw()
+        self.window.destroy()
+        gui = CreateAccount(glob.profileList, glob.user_profile)
         gui.displayScreen()
         gui.window.mainloop()
-        gui.window.destroy()
+        #gui.window.destroy()
 
     def loginScreen(self):
         print("login screen")
