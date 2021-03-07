@@ -10,6 +10,7 @@
 #import emoji
 #implement emoji using key value pair, valid emotions: happy, sad, exhausted, need help....
 #emoji = {'happy':'U0001F603', 'sad:'U0001F603'} 
+#Remove Friend class ?
 class Friend:
     def __init__ (self, this = "", friend = "", contactTime = ""):
         self.me = this
@@ -17,11 +18,11 @@ class Friend:
         self.contactTime = contactTime
 
 class Profile:
-    def __init__(self, name = "", mood = "", avatar = "", contact = "1", friendsList = "", id = 0):
-        self.name = name
-        self.mood = mood
-        self.avatar = avatar
-        self.contact = contact
-        self.id = id;
+    def __init__(self, name:str = "", mood:int = -1, avatar = "", contact:bool = False, id:str = ""):
+        self.name:str = name
+        self.mood:int = mood
+        self.avatar:str = avatar
+        self.contact:bool = contact
+        self.id:str = id
 
 
