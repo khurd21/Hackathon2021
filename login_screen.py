@@ -28,7 +28,6 @@ def readcsv():
         for row in reader:
             print(f"Name: {row[0]}")
             friend_list = []
-            fr = Friend()
             p = Profile()
             p.name = row[0]
             p.mood = int(row[1])
@@ -42,10 +41,14 @@ def readcsv():
                 js = eval(row[4])
                 for j in js:
                     print(j)
+                    fr = Friend()
                     fr.root = row[0]
                     fr.friend = j['Name']
+                    print(f"In j and the dict value for name is: {fr.friend}")
                     fr.dateToContact = j['dateToContact']
                     fr.wellnessCheckFrequency = j['Name']
+                    friend_list.append(fr)
+            p.friendsList = friend_list
             p.id = row[5]
             p.password = row[6]
             profileList.append(p)
@@ -82,12 +85,9 @@ class LoginScreen:
 def save_users():
     global profileList
     with open('data/users_test.csv', 'w') as f:
-        #print("truncating")
-        #f.truncate()
         for i in profileList:
             print("printing to outfile")
             i.save_user_data(f)
-            #f.write("test")
     f.close()
 
 profileList=[]
