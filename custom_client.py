@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import tkinter as tk
-from tkinter import messagebox
 import socket
 import threading
 import pygame
@@ -10,7 +9,7 @@ import pygame
 
 class Client:
     client = None
-    HOST_ADDR = "10.0.0.246"
+    HOST_ADDR = "10.0.0.44"
     #HOST_ADDR = "71.231.103.175"
     #HOST_ADDR = socket.gethostname()
     #HOST_ADDR = "0.0.0.0"
@@ -52,7 +51,7 @@ class Client:
         self.bottomFrame.bind("<Button-3>", self.popup)
         
         self.tkMessage = tk.Text(self.bottomFrame, height=2, width=55)
-        self.tkMessage.pack(side=tk.LEFT, padx=(5, 13), pady=(11, 16))
+        self.tkMessage.pack(side=tk.LEFT, padx=(5, 13), pady=(5, 10))
         self.tkMessage.config(highlightbackground="grey", state="disabled")
         self.tkMessage.bind("<Return>", (lambda event: self.receive_message_from_chat(self.tkMessage.get("1.0", tk.END))))
         self.bottomFrame.pack(side=tk.BOTTOM)
@@ -68,13 +67,8 @@ class Client:
         self.displayFrame.pack(side=tk.TOP)
 
         self.connect_client2server()
-        self.window.protocol("WM_DELETE_WINDOW", self.on_closing)
-        self.window.mainloop()
 
-    def on_closing(self):
-        if messagebox.askokcancel("Quit", "Do you want to close the chatbox client?"):
-            self.client.close()
-            self.window.destroy()
+        self.window.mainloop()
 
     def connect_client2server(self):
         try:
@@ -102,7 +96,7 @@ class Client:
             if len(texts) < 1:
                 self.tkDisplay.insert(tk.END, from_server)
             else:
-                self.tkDisplay.insert(tk.END, "\n\n"+ from_server)
+                self.tkDisplay.insert(tk.END, from_server + '\n')
 
             self.tkDisplay.config(state=tk.DISABLED)
             self.tkDisplay.see(tk.END)
@@ -124,39 +118,39 @@ class Client:
 
         print(message)
         if message == "Bruh!":
-            pygame.mixer.music.load("sounds/movie_1.ogg")
+            pygame.mixer.music.load("movie_1.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Nani!":
-            pygame.mixer.music.load("sounds/nani.ogg")
+            pygame.mixer.music.load("nani.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Yeah!":
-            pygame.mixer.music.load("sounds/yeah.ogg")
+            pygame.mixer.music.load("yeah.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Wow":
-            pygame.mixer.music.load("sounds/wow.ogg")
+            pygame.mixer.music.load("wow.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Do it!":
-            pygame.mixer.music.load("sounds/doit.ogg")
+            pygame.mixer.music.load("doit.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "I am groot.":
-            pygame.mixer.music.load("isounds/amgroot.ogg")
+            pygame.mixer.music.load("iamgroot.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "Bazinga!":
-            pygame.mixer.music.load("sounds/bazinga.ogg")
+            pygame.mixer.music.load("bazinga.ogg")
             pygame.mixer.music.play(loops=0)
         
         elif message == "Windows OS":
-            pygame.mixer.music.load("sounds/nuclear-fart.ogg")
+            pygame.mixer.music.load("nuclear-fart.ogg")
             pygame.mixer.music.play(loops=0)
 
         elif message == "WilHelm Scream":
-            pygame.mixer.music.load("sounds/wilhelmscream.ogg")
+            pygame.mixer.music.load("wilhelmscream.ogg")
             pygame.mixer.music.play(loops=0)
 
         self.send_message_to_server(message)
@@ -165,6 +159,9 @@ class Client:
 
     def send_message_to_server(self, message):
         self.client.send(str.encode(message))
+        if message == "exit":
+            self.client.close()
+            self.window.destroy()
         print("Sending message")
     
     def bruh(self):
@@ -179,4 +176,4 @@ class Client:
     def playSounds(self, message):
         self.receive_message_from_chat(message)
 
-#client = Client("rgusa")
+#client = Client("Kyle Hurd")

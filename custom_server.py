@@ -9,7 +9,7 @@ class Server():
     #HOST_ADDRESS = "71.231.103.175"
     #HOST_ADDRESS = "0.0.0.0"
     #HOST_ADDRESS = socket.gethostname()
-    HOST_ADDRESS = "10.0.0.246"
+    HOST_ADDRESS = "10.0.0.44"
     HOST_PORT = 8080
     client_name = " "
     client_arr = []
